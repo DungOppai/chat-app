@@ -55,16 +55,15 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 const DashboardLayout = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
-  console.log(theme);
   const { onToggleMode } = useSettings();
+
   return (
-    <>
+    <Stack direction="row" sx={{ height: "100vh" }}>
       <Box
         p={2}
         sx={{
           backgroundColor: theme.palette.background.paper,
           boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
-          height: "100vh",
           width: 100,
         }}
       >
@@ -99,11 +98,9 @@ const DashboardLayout = () => {
                       backgroundColor: theme.palette.primary.main,
                       borderRadius: 1.5,
                     }}
+                    key={el.index}
                   >
-                    <IconButton
-                      sx={{ width: "max-content", color: "#fff" }}
-                      key={el.index}
-                    >
+                    <IconButton sx={{ width: "max-content", color: "#fff" }}>
                       {el.icon}
                     </IconButton>
                   </Box>
@@ -153,7 +150,6 @@ const DashboardLayout = () => {
           </Stack>
 
           <Stack spacing={4}>
-            {/* Switch */}
             <AntSwitch
               onChange={() => {
                 onToggleMode();
@@ -164,8 +160,9 @@ const DashboardLayout = () => {
           </Stack>
         </Stack>
       </Box>
+
       <Outlet />
-    </>
+    </Stack>
   );
 };
 
